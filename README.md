@@ -124,5 +124,4 @@ type: "extra"
 ```
 ujson
 redis 2.10.3
-futures
 ```
