@@ -44,10 +44,10 @@
 name: "hy-outer-global-proxy-test",
 vip2ws: [
 	{
-		wstype: "apps",
+		wstype: "test",
 		vip: "xx.xx.208.1",
 		wss: [
-			"apps-extngtest0-bgp0.hy01"
+			"test-extngtest0.nosa01"
 		],
 		ports: [
 			{
@@ -65,10 +65,10 @@ vip2ws: [
 		]
 	},
 	{
-		wstype: "search",
+		wstype: "app",
 		vip: "xx.xx.208.2",
 		wss: [
-			"search-extngtest0-bgp0.hy01"
+			"app-extngtest0.nosa01"
 		],
 		ports: [
 			{
@@ -88,14 +88,14 @@ vip2ws: [
 ],
 lbinfos: [
 {
-	internalgateway: "10.0.19.225",
+	internalgateway: "10.xx.19.225",
 	routerid: "xx.xx.246.186",
-	internalip: "10.0.19.226",
+	internalip: "10.xx.19.226",
 	internalnetmask: "255.255.255.224",
 	extragateway: "xx.xx.246.185",
 	ospfnet: "xx.xx.246.184/30",
 	extraip: "xx.xx.246.186",
-	hostname: "sa-extlbtest0-bgp0.hy01",
+	hostname: "sa-extlbtest0.nosa01",
 	extranetmask: "255.255.255.252"
 	}
 ],
