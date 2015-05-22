@@ -27,16 +27,16 @@ class Application(tornado.web.Application):
 
     def __init__(self):
         handlers = [
-            (r"/api/v1/lvs/?", lvs_service.ClusterALLHandler),
-            (r"/api/v1/lvs/sync/?", lvs_service.SyncHandler),         
-            (r"/api/v1/lvs/vips/?", lvs_service.VipsHandler),
-            (r"/api/v1/lvs/lbs/?", lvs_service.LbsHandler),
-            (r"/api/v1/lvs/([^/]+)/?", lvs_service.ClusterHandler),
-            (r"/api/v1/lvs/([^/]+)/vips/?", lvs_service.VipHandler),
-            (r"/api/v1/lvs/([^/]+)/lbs/?", lvs_service.LbHandler),
-            (r"/api/v1/lvs/([^/]+)/wss/?", lvs_service.WsHandler),
-            (r"/api/v1/lvs/([^/]+)/ports/?", lvs_service.PortsHandler),
-            (r"/api/v1/lvs/([^/]+)/wstype/?", lvs_service.WstypeHandler),
+            (r"/lvs/?", lvs_service.ClusterALLHandler),
+            (r"/lvs/sync/?", lvs_service.SyncHandler),         
+            (r"/lvs/vips/?", lvs_service.VipsHandler),
+            (r"/lvs/lbs/?", lvs_service.LbsHandler),
+            (r"/lvs/([^/]+)/?", lvs_service.ClusterHandler),
+            (r"/lvs/([^/]+)/vips/?", lvs_service.VipHandler),
+            (r"/lvs/([^/]+)/lbs/?", lvs_service.LbHandler),
+            (r"/lvs/([^/]+)/wss/?", lvs_service.WsHandler),
+            (r"/lvs/([^/]+)/ports/?", lvs_service.PortsHandler),
+            (r"/lvs/([^/]+)/wstype/?", lvs_service.WstypeHandler),
         ]
 
         settings = {
