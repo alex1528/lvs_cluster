@@ -51,7 +51,7 @@ name: "hy-outer-global-proxy-test",
 vip2ws: [
 	{
 		wstype: "apps",
-		vip: "60.28.208.1",
+		vip: "xx.xx.208.1",
 		wss: [
 			"apps-extngtest0-bgp0.hy01"
 		],
@@ -72,7 +72,7 @@ vip2ws: [
 	},
 	{
 		wstype: "search",
-		vip: "60.28.208.2",
+		vip: "xx.xx.208.2",
 		wss: [
 			"search-extngtest0-bgp0.hy01"
 		],
@@ -95,21 +95,21 @@ vip2ws: [
 lbinfos: [
 {
 	internalgateway: "10.0.19.225",
-	routerid: "60.29.246.186",
+	routerid: "xx.xx.246.186",
 	internalip: "10.0.19.226",
 	internalnetmask: "255.255.255.224",
-	extragateway: "60.29.246.185",
-	ospfnet: "60.29.246.184/30",
-	extraip: "60.29.246.186",
+	extragateway: "xx.xx.246.185",
+	ospfnet: "xx.xx.246.184/30",
+	extraip: "xx.xx.246.186",
 	hostname: "sa-extlbtest0-bgp0.hy01",
 	extranetmask: "255.255.255.252"
 	}
 ],
 vipnets: [
-	"60.28.208.0/25",
-	"123.150.178.128/25",
-	"125.39.93.48/28",
-	"125.39.216.0/25"
+	"xx.xx.208.0/25",
+	"xx.xx.178.128/25",
+	"xx.xx.93.48/28",
+	"xx.xx.216.0/25"
 ],
 device: "em1",
 type: "extra"
