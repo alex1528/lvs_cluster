@@ -8,7 +8,7 @@
 
     3. 一个域名通过 DNS 解析到的 IP 即是 VIP, VIP 以 lo 的方式起在每台 LVS 上, VIP 下面可以挂多台 Nginx, Nginx 端口也可以多个;
 
-    4. 为每个 VIP 增加了一个属性: wstype, 用于定义 Nginx 的业务属性, 并在 Nginx 代码里提供根据 wstype 查出对应的 Nginx 列表的 API;
+    4. 为每个 VIP 增加了一个属性: wstype, 用于定义 Nginx 的业务属性, 并在 Nginx 代码里提供根据 wstype 查出对应的 Nginx 列表的 API.
 
 
 LVS 的功能有:
