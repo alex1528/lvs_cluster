@@ -8,12 +8,16 @@
 
     3. 一个域名通过 DNS 解析到的 IP 即是 VIP, VIP 以 lo 的方式起在每台 LVS 上, VIP 下面可以挂多台 Nginx, Nginx 端口也可以多个;
 
-    4. 为每个 VIP 增加了一个属性: wstype, 用于定义 Nginx 的业务属性, 并在 Nginx 代码里提供根据 wstype 查出对应的 Nginx 列表的 API.
+    4. 为每个 VIP 增加了一个属性: wstype, 用于定义 Nginx 的业务属性;
+
+    5. 操作 LVS 机器还是通过 SSH 信任来做的, SSH 用户还要有 sudo 权限;
+
+    6. LVS 机器重编内核和配置工具(funcs.py里面)可能需要重写, 编写合适的脚本即可.
 
 
-LVS 的功能有:
+    功能有:
 
-    1. 建立 LVS + OSPF + FULLNAT + Nginx 集群, 并且把配置文件发布到所有 LVS 机器, 但不直接 reload keepalived, 需要手动操作(LVS 机器需要事先用装机系统安装好);
+    1. 建立 LVS + OSPF + FULLNAT + Nginx 集群, 并且把配置文件发布到所有 LVS 机器, 但不直接 reload keepalived, 需要手动操作(LVS 机器需要事先用「装机系统」安装好);
 
     2. 删除 LVS + OSPF + FULLNAT + Nginx 集群, 只是从数据库中删除集群信息, 集群的机器只需要重装即可;
 
@@ -28,16 +32,6 @@ LVS 的功能有:
     7. 修改某一个 VIP 的 wstype;
 
     8. 同步配置到 LB(LVS 机器).
-
-
-Nginx 的功能有:
-
-    1. 由于 Nginx 配置分为 产品线、内网或外网和机房, 每台 Nginx 的配置不一样, 此系统提供根据 Nginx 机器来获取配置文件的 API(upstream node 也有此系统生成);
-
-    2. 像上面说的, 提供根据 wstype 查出对应的 Nginx 列表的 API;
-
-    3. Nginx 机器的初始化此系统不做, 需要额外配置.
-
 
 
 
