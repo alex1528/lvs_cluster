@@ -76,7 +76,7 @@ class ClusterALLHandler(tornado.web.RequestHandler):
 class ClusterHandler(tornado.web.RequestHandler):
 
     def get(self, name):
-        """ 查看一个集群信息, 用 name 指定集群名称.
+        """ 查看一个集群信息.
 
         """
         _ret = info.cluster(name)
@@ -87,7 +87,7 @@ class ClusterHandler(tornado.web.RequestHandler):
         self.write(json.dumps(ret))
 
     def delete(self, name):
-        """ 删除一个集群, 用 name 指定集群名称.
+        """ 删除一个集群.
 
         """
         status = cluster.delete(name)
@@ -98,7 +98,7 @@ class ClusterHandler(tornado.web.RequestHandler):
 class VipHandler(tornado.web.RequestHandler):
 
     def post(self, name):
-        """ 增加一个 VIP, 用 name 指定集群名称.
+        """ 增加一个 VIP.
 
         """
         vip2ws = json.loads(self.get_argument("vip2ws"))
@@ -123,7 +123,7 @@ class VipHandler(tornado.web.RequestHandler):
 class LbHandler(tornado.web.RequestHandler):
 
     def post(self, name):
-        """ 增加一个 Lb, 用 name 指定集群名称.
+        """ 增加一个 Lb.
 
         """
         lbinfos = json.loads(self.get_argument("lbinfos"))
@@ -148,7 +148,7 @@ class LbHandler(tornado.web.RequestHandler):
 class WsHandler(tornado.web.RequestHandler):
 
     def post(self, name):
-        """ 增加一个 Ws, 用 name 指定集群名称.
+        """ 增加一个 Ws.
 
         """
         vip2ws = json.loads(self.get_argument("vip2ws"))
@@ -174,7 +174,7 @@ class WsHandler(tornado.web.RequestHandler):
 class PortsHandler(tornado.web.RequestHandler):
 
     def post(self, name):
-        """ 增加若干个 port, 用 name 指定集群名称.
+        """ 增加若干个 port.
 
         """
         vip = self.get_argument("vip")
@@ -214,7 +214,7 @@ class PortsHandler(tornado.web.RequestHandler):
 class WstypeHandler(tornado.web.RequestHandler):
 
     def patch(self, name):
-        """ 修改 wstype, 用 name 指定集群名称.
+        """ 修改 wstype.
 
         """
         vip = self.get_argument("vip")
