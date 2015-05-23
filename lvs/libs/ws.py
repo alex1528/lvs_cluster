@@ -41,11 +41,7 @@ def add(name, new_vip2ws):
 
     # 获取集群信息.
     key = "cluster:%s" % name
-    _type = client.hget(key, "type")
-    lbinfos = eval(client.hget(key, "lbinfos"))
     old_vip2ws = eval(client.hget(key, "vip2ws"))
-    vipnets = eval(client.hget(key, "vipnets"))
-    device = client.hget(key, "device")
 
     # 检查 vip 是否在集群中.
     vips = [i["vip"] for i in old_vip2ws]
@@ -98,11 +94,7 @@ def delete(name, del_vip2ws):
 
     # 获取集群信息.
     key = "cluster:%s" % name
-    _type = client.hget(key, "type")
-    lbinfos = eval(client.hget(key, "lbinfos"))
     old_vip2ws = eval(client.hget(key, "vip2ws"))
-    vipnets = eval(client.hget(key, "vipnets"))
-    device = client.hget(key, "device")
 
     # 获取新的 vip2ws.
     vip2ws = list()

@@ -58,8 +58,6 @@ def add(name, new_lbinfos):
     key = "cluster:%s" % name
     _type = client.hget(key, "type")
     old_lbinfos = eval(client.hget(key, "lbinfos"))
-    vip2ws = eval(client.hget(key, "vip2ws"))
-    vipnets = eval(client.hget(key, "vipnets"))
     device = client.hget(key, "device")
 
     # 获取新的 lbinfos.
@@ -126,11 +124,7 @@ def delete(name, del_lbs):
 
     # 获取集群信息.
     key = "cluster:%s" % name
-    _type = client.hget(key, "type")
     old_lbinfos = eval(client.hget(key, "lbinfos"))
-    vip2ws = eval(client.hget(key, "vip2ws"))
-    vipnets = eval(client.hget(key, "vipnets"))
-    device = client.hget(key, "device")
 
     # 删除 lb.
     lbinfos = copy.deepcopy(old_lbinfos)
