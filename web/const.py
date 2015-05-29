@@ -19,7 +19,7 @@ REDIS_DB_LVS = "1"
 LVS_FULLNAT_CMD = """ sudo -i wdinst lvs_fullnat &>/tmp/.lvs_fullnat.log & """
 
 # 本地 known hosts 路径.
-LOCAL_SSH_KNOWN_HOSTS = "/home/op/.ssh/known_hosts"
+LOCAL_SSH_KNOWN_HOSTS = "/home/work/.ssh/known_hosts"
 
 # LVS 配置文件模板和 LVS 机器配置文件备份目录.
 LVS_TEMPLATE_DIR = "lvs/template/"

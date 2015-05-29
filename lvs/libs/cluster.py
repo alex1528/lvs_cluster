@@ -74,13 +74,11 @@ def add(name, _type, lbinfos, vip2ws, vipnets, device):
             internalnetmask, internalgateway, extraip, \
             extranetmask, extragateway)
         if not ret:
-            logger.error("Cfg lb ip failed:%s" % lb)
             return False
-        logger.info("Cfg lb ip success:%s" % lb)
 
         # 配置 lip.
-        lips = lips.get(internalip, internalnetmask)
-        ret = funcs.lips(lb, internalip, lips)
+        _lips = lips.get(internalip, internalnetmask)
+        ret = funcs.lips(lb, internalip, _lips)
         if not ret:
             logger.error("Cfg lb lips failed:%s" % lb)
             return False

@@ -9,8 +9,8 @@ import os
 import time
 from multiprocessing.dummy import Pool as ThreadPool
 
-from web.const import LOCAL_SSH_KNOWN_HOSTS, LVS_FULLNAT_CMD, \
-    REDIS_DB_LVS
+from web.const import (LOCAL_SSH_KNOWN_HOSTS, LVS_FULLNAT_CMD, 
+    REDIS_DB_LVS)
 from libs import dnsapi, log, mail, redisoj, utils
 from lvs.libs import conf, info
 
@@ -82,6 +82,7 @@ def ip(lb, _type, device, internalip, internalnetmask, \
     sshcmd = """ ssh -oConnectTimeout=3 -oStrictHostKeyChecking=no """\
                 """op@%s "%s" & """ % (lb, cmd)
     os.system(sshcmd)
+    logger.info("Cfg lb ip: %s" % lb)
 
     # 先获取当前的内网 IP.
     origin_internalip = utils.dns_resolv([lb])[0]

@@ -11,8 +11,8 @@ from jinja2 import Environment, FileSystemLoader
 
 from libs import log, utils
 from lvs.libs import lips
-from web.const import LVS_TEMPLATE_DIR, LVS_CFG_TMP_DIR, \
-    LB_CFG_BAK_DIR
+from web.const import (LVS_TEMPLATE_DIR, LVS_CFG_TMP_DIR, 
+    LB_CFG_BAK_DIR)
 
 
 logger = log.get_logger("LVS CONF")

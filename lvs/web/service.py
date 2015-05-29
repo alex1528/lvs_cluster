@@ -6,7 +6,9 @@ import sys
 import os
 
 import ujson as json
+from concurrent.futures import ThreadPoolExecutor
 import tornado.web
+from tornado import gen
 
 from libs import redisoj
 from lvs.libs import funcs, info
@@ -44,6 +46,8 @@ def _self_write(status, name, module, func, cfg_push=False):
 
 
 class ClusterALLHandler(tornado.web.RequestHandler):
+    global executor
+    executor = ThreadPoolExecutor(max_workers=10)
 
     def get(self):
         """ 查看所有集群信息. 
@@ -56,6 +60,7 @@ class ClusterALLHandler(tornado.web.RequestHandler):
         }
         self.write(json.dumps(ret))
 
+    @tornado.gen.coroutine
     def post(self):
         """ 增加一个集群. 
 
@@ -68,7 +73,8 @@ class ClusterALLHandler(tornado.web.RequestHandler):
         device = self.get_argument("device")
         cfg_push = self.get_argument("cfg_push", True)
 
-        status = cluster.add(name, _type, lbinfos, vip2ws, vipnets, device)
+        status = yield executor.submit(cluster.add, name, _type, 
+            lbinfos, vip2ws, vipnets, device)
         ret = _self_write(status, name, "cluster", "add", cfg_push)
         self.write(json.dumps(ret))
 
@@ -121,7 +127,10 @@ class VipHandler(tornado.web.RequestHandler):
 
 
 class LbHandler(tornado.web.RequestHandler):
+    global executor
+    executor = ThreadPoolExecutor(max_workers=10)
 
+    @tornado.gen.coroutine
     def post(self, name):
         """ 增加一个 Lb.
 
@@ -129,7 +138,7 @@ class LbHandler(tornado.web.RequestHandler):
         lbinfos = json.loads(self.get_argument("lbinfos"))
         cfg_push = self.get_argument("cfg_push", True)
 
-        status = lb.add(name, lbinfos)
+        status = yield executor.submit(lb.add, name, lbinfos)
         ret = _self_write(status, name, "lb", "add", cfg_push)
         self.write(json.dumps(ret))
 
