@@ -24,7 +24,7 @@ class LoginException(Exception):
 
 
 class Ldapapi(object):
-    def __init__(self, host_url=DNS_HOST, username=DNS_AUTH_USERNAME, \
+    def __init__(self, host_url=DNS_HOST, username=DNS_AUTH_USERNAME, 
             password=DNS_AUTH_PASSWD, auth_uri=DNS_AUTH_API):
         self.is_login = False
         self.host_url = host_url

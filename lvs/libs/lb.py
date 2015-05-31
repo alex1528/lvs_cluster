@@ -79,9 +79,9 @@ def add(name, new_lbinfos):
         extragateway = lbinfo.get("extragateway", None)
 
         # 配置 IP.
-        ret = funcs.ip(lb, _type, device, internalip, \
-            internalnetmask, internalgateway, extraip, \
-            extranetmask, extragateway)
+        ret = funcs.ip(lb, _type, device, internalip, 
+                       internalnetmask, internalgateway, extraip, 
+                       extranetmask, extragateway)
         if not ret:
             return False
 

@@ -10,7 +10,7 @@ import time
 from multiprocessing.dummy import Pool as ThreadPool
 
 from web.const import (LOCAL_SSH_KNOWN_HOSTS, LVS_FULLNAT_CMD, 
-    REDIS_DB_LVS)
+                       REDIS_DB_LVS)
 from libs import dnsapi, log, mail, redisoj, utils
 from lvs.libs import conf, info
 
@@ -75,9 +75,9 @@ def ip(lb, _type, device, internalip, internalnetmask, \
     cmd = "cd /tmp/post_config/lvsfullnat_ip_config "\
             "&& sudo sh lvsfullnat_ip_config.sh "\
             "%s %s %s %s %s %s %s %s "\
-            "&>/tmp/.lvsfullnat_ip_config.log &" % (\
-            _type, device, internalip, internalnetmask, \
-            internalgateway, extraip, extranetmask, \
+            "&>/tmp/.lvsfullnat_ip_config.log &" % (
+            _type, device, internalip, internalnetmask, 
+            internalgateway, extraip, extranetmask, 
             extragateway)
     sshcmd = """ ssh -oConnectTimeout=3 -oStrictHostKeyChecking=no """\
                 """op@%s "%s" & """ % (lb, cmd)
@@ -125,8 +125,8 @@ def lips(lb, ip, lips):
     # 检查是否能够 ping 通.
     time.sleep(120)
     checkcmd = "ping -c 3 %s &>/dev/null" % ip
-    ret = utils.check_wait_null(checkcmd, timeinit=0, \
-        interval=5, timeout=3600)
+    ret = utils.check_wait_null(checkcmd, timeinit=0, 
+                                interval=5, timeout=3600)
     if not ret:
         logger.error("Ping failed, lb:%s, ip:%s" % (lb, ip))
         return False
@@ -181,15 +181,15 @@ def _lb_single(host):
     # 安装 lvs fullnat 完成后会重启系统, 当 ping 不通时,
     # 说明已经重启系统.
     checkcmd = "! ping -c 3 %s &>/dev/null" % host
-    ret = utils.check_wait_null(
-        checkcmd, timeinit=0, interval=5, timeout=2700)
+    ret = utils.check_wait_null(checkcmd, timeinit=0, 
+                                interval=5, timeout=2700)
     if not ret:
         return False
 
     # 当 ping 通时, 说明已经重启完毕.
     checkcmd = "ping -c 3 %s &>/dev/null" % host
-    ret = utils.check_wait_null(
-        checkcmd, timeinit=0, interval=5, timeout=1200)
+    ret = utils.check_wait_null(checkcmd, timeinit=0, 
+                                interval=5, timeout=1200)
 
     return {"host": host, "result": ret}
 

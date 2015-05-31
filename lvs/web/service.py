@@ -74,7 +74,8 @@ class ClusterALLHandler(tornado.web.RequestHandler):
         cfg_push = self.get_argument("cfg_push", True)
 
         status = yield executor.submit(cluster.add, name, _type, 
-            lbinfos, vip2ws, vipnets, device)
+                                       lbinfos, vip2ws, vipnets, 
+                                       device)
         ret = _self_write(status, name, "cluster", "add", cfg_push)
         self.write(json.dumps(ret))
 

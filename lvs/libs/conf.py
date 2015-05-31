@@ -12,7 +12,7 @@ from jinja2 import Environment, FileSystemLoader
 from libs import log, utils
 from lvs.libs import lips
 from web.const import (LVS_TEMPLATE_DIR, LVS_CFG_TMP_DIR, 
-    LB_CFG_BAK_DIR)
+                       LB_CFG_BAK_DIR)
 
 
 logger = log.get_logger("LVS CONF")
@@ -38,7 +38,7 @@ def _backup(hosts, remote_dir, base_dir=LB_CFG_BAK_DIR):
             continue
 
         # 备份基目录如果不存在, 创建.
-        cmd = "sudo test -d %s ||sudo /bin/mkdir -p %s" % (\
+        cmd = "sudo test -d %s ||sudo /bin/mkdir -p %s" % (
             base_dir, base_dir)
         utils.remote_cmd(host, cmd)
 
@@ -56,7 +56,7 @@ def generate(_type, lbinfos, vip2ws, vipnets, device):
 
     """
     j2_env = Environment(loader=FileSystemLoader(LVS_TEMPLATE_DIR),
-                            trim_blocks=True)
+                         trim_blocks=True)
 
     # 各个模板文件名.
     keepalived_template = "keepalived.conf"
@@ -128,7 +128,7 @@ def generate(_type, lbinfos, vip2ws, vipnets, device):
             with open(lb_osfpd_dir + "/ospfd.conf", 'w') as f:
                 f.writelines(
                     j2_env.get_template(ospfd_template).render(
-                        lb=lb, routerid=routerid, device=device, \
+                        lb=lb, routerid=routerid, device=device, 
                         ospfnet=ospfnet, vipnets=vipnets
                     )                    
                 )
@@ -224,7 +224,7 @@ def generate(_type, lbinfos, vip2ws, vipnets, device):
             ret = utils.transfer_dir([lb], local_dir, remote_dir)
             if not ret:
                 message = "Transfer keepalived cfg failed, "\
-                    "lb:%s, local_dir:%s, remote_dir:%s" % (\
+                    "lb:%s, local_dir:%s, remote_dir:%s" % (
                     lb, local_dir, remote_dir)
                 logger.error(message)
                 return False
